@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Зарифжон Мурадов — Web Development</title>
+<style>
+  :root{
+    --bg: #0f1210;
+    --bg-raised: #161b18;
+    --line: #2a322d;
+    --text: #eef1ee;
+    --text-dim: #9aa39c;
+    --accent: #c9ff5c;
+    --accent-dim: #7f9147;
+    --serif: "Georgia", "Times New Roman", serif;
+    --sans: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---- Header / nav ---- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(15,18,16,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+  }
+  .mark-logo{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .nav ul{
+    display:flex;
+    gap: 28px;
+    list-style:none;
+  }
+  .nav ul li a{
+    font-size: 14px;
+    color: var(--text-dim);
+    transition: color .15s ease;
+  }
+  .nav ul li a:hover{ color: var(--text); }
+
+  /* ---- Hero ---- */
+  .hero{
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-avatar{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .hero .kasb{
+    color: var(--accent);
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(38px, 7vw, 64px);
+    line-height: 1.08;
+    max-width: 13ch;
+    margin-bottom: 22px;
+  }
+  .hero p{
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 46ch;
+    margin-bottom: 32px;
+  }
+  .btn-row{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  .btn.primary{
+    background: var(--accent);
+    color: #0f1210;
+  }
+  .btn.ghost{
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+  .btn.primary:hover{ background: #dbff8c; }
+  .btn.ghost:hover{ border-color: var(--accent-dim); }
+
+  /* ---- Section shared ---- */
+  section{ padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom: none; }
+  .section-label{
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+
+  /* ---- Bio ---- */
+  .bio p{
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 58ch;
+  }
+  .bio p + p{ margin-top: 18px; }
+
+  /* ---- Работы / Portfolio ---- */
+  .work-item{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+  }
+  .work-item:first-of-type{ border-top: none; }
+  .work-year{
+    color: var(--text-dim);
+    font-size: 14px;
+    padding-top: 3px;
+  }
+  .work-title{ font-size: 18px; margin-bottom: 6px; }
+  .work-desc{ color: var(--text-dim); font-size: 15px; max-width: 52ch; }
+  .work-link{
+    display:inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-dim);
+  }
+
+  /* ---- Контакты ---- */
+  .contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+  }
+  .contact-item .label{
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .contact-item .value{
+    font-size: 17px;
+  }
+  .contact-item .value a:hover{ color: var(--accent); }
+
+  footer{
+    padding: 32px 0 48px;
+    color: var(--text-dim);
+    font-size: 13px;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 560px){
+    .nav ul{ gap: 16px; }
+    .work-item{ grid-template-columns: 1fr; gap: 4px; }
+    .contact-grid{ grid-template-columns: 1fr; }
+    footer{ flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <img src="muradov_dev.png" alt="Muradov_dev logo" class="mark-logo">
+    <ul>
+      <li><a href="#bio">Обо мне</a></li>
+      <li><a href="#rabota">Работы</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <img src="muradov_dev.png" alt="Зарифжон Мурадов" class="hero-avatar">
+    <div class="kasb">WEB DEVELOPMENT</div>
+    <h1>Зарифжон Мурадов</h1>
+    <p>Здесь можно добавить короткое описание — чем вы занимаетесь и чем можете помочь клиентам.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn primary">Связаться</a>
+      <a href="#rabota" class="btn ghost">Смотреть работы</a>
+    </div>
+  </div>
+</section>
+
+<section id="bio">
+  <div class="wrap">
+    <div class="section-label">Обо мне</div>
+    <div class="bio">
+      <p>Здесь можно написать более подробную биографию: в какой сфере у вас опыт, сколько лет вы работаете, над какими проектами трудились.</p>
+      <p>Можно добавить ещё один абзац — например, о стиле работы, ценностях или о том, почему вы выбрали именно эту сферу.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rabota">
+  <div class="wrap">
+    <div class="section-label">Работы / Портфолио</div>
+
+    <div class="work-item">
+      <div class="work-year">2025</div>
+      <div>
+        <div class="work-title">Название проекта #1</div>
+        <div class="work-desc">Краткое описание проекта — что было сделано и каких результатов удалось достичь.</div>
+        <a href="#" class="work-link">Смотреть →</a>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-year">2024</div>
+      <div>
+        <div class="work-title">Название проекта #2</div>
+        <div class="work-desc">Краткое описание проекта — что было сделано и каких результатов удалось достичь.</div>
+        <a href="#" class="work-link">Смотреть →</a>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="work-year">2023</div>
+      <div>
+        <div class="work-title">Название проекта #3</div>
+        <div class="work-desc">Краткое описание проекта — что было сделано и каких результатов удалось достичь.</div>
+        <a href="#" class="work-link">Смотреть →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-label">Контакты</div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="label">Телефон</div>
+        <div class="value"><a href="tel:+996552360695">+996 552 360 695</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Местоположение</div>
+        <div class="value">Кыргызстан, Ошская область</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Telegram</div>
+        <div class="value"><a href="https://t.me/username" target="_blank">@username</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Instagram</div>
+        <div class="value"><a href="https://instagram.com/username" target="_blank">@username</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content: space-between; width:100%;">
+    <span>© 2026 Зарифжон Мурадов</span>
+    <span>Кыргызстан, Ошская область</span>
+  </div>
+</footer>
+
+</body>
+</html>
